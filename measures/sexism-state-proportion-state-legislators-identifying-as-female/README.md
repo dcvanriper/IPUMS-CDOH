@@ -7,12 +7,12 @@ To access a specific year's dataset, you need to visit that year's URL (listed i
 Clicking on the `Export Table Data` link will download a CSV to your computer, probably in your Downloads folder. You must move the CSV file to the `/data/input` direcory. The `_proc.R` script expects the Excel files to be in that directory.  We also strongly recommend you rename the CSV file because the downloaded file name is not particularly meaningful. We renamed the downloaded file to `Data_YYYY.csv` where YYYY` is the year the data represents.
 
 ## Data processing
-After you have acquired the data and placed them in the `/data/input/` directory, you should run the script in the `/R` directory with `_proc.R` in its file name. This script will load the data into R and create the county-level measures of educational inequity. It will then write out a CSV file to the `/data/output` directory. 
+After you have acquired the data and placed them in the `/data/input/` directory, you should run the script in the `/R` directory with `_proc.R` in its file name. This script will load the data into R and create the state-level measures related to the proportion of state legislators identifying as female. It will then write out a CSV file to the `/data/output` directory. 
 
 ## Documentation
-To generate the PDF documentation for the measure, you should knit the scirpt in the `/R` directory with the `.Rmd` file extension. Knit will convert the R markdown file to a PDF in the `/R` directory. 
+To generate the PDF documentation for the measure, you should knit the script in the `/R` directory with the `.Rmd` file extension. Knit will convert the R markdown file to a PDF in the `/R` directory. 
 
-The information that populates the`Data Summary` section of the documentation comes from two CSV files found in the `/data/input` directory. The `variable_descriptions.csv` file lists the variable names, descriptions, and data types for each column in the output CSV.
+The information that populates the`Data Summary` section of the documentation comes from a CSV file found in the `/data/input` directory. The `variable_descriptions.csv` file lists the variable names, descriptions, and data types for each column in the output CSV.
 
 ## URLs to CAWP's data
 * Center for American Women and Politics (CAWP). 2024. “Women in State Legislatures 2023.” New Brunswick, NJ: Center for American Women and Politics, Eagleton Institute of Politics, Rutgers University-New Brunswick. https://cawp.rutgers.edu/facts/levels-office/state-legislature/women-state-legislatures-2024. (Accessed January 5, 2024) 
