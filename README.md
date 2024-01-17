@@ -26,7 +26,7 @@ We begin by acquiring the input data that underlie a particular measure. Data ac
 After we have acquired the input data for a particular measure, we can then process it to create the CDOH measure. Withing the `/R` directory for each measure. there will be a script with `_proc.R` at end of its name. This script loads in the required input data, generates the variables for the measure, and writes out a CSV file into the `/data/output_data` directory. 
 
 ### 3. Documentation generation
-We then create a PDF file documenting the measure, including descriptions of the input data, formulas used to create variables, and the name and description of each variable in the output CSV file. The file with the `.Rmd` extension generates the PDF, and we use the `Knit` function in RStudio for that purpose.
+We then create a PDF file documenting a particular measure, including descriptions of the input data, formulas used to create variables, and the name and description of each variable in the output CSV file. The file with the `.Rmd` extension in the measure's `/R` directory generates the PDF, and we use the `Knit` function in RStudio for that purpose. The PDF file will be written to the `/R` directory.
 
 ## Something about funding support...
 Funding for IPUMS CDOH is provided by XXXXX. Funding for the creation of this repository is provided by a pilot grants from YYYY.
