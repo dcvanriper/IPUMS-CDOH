@@ -47,3 +47,10 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Excel files
+*.xls
+*.xlsx
+
+# .DS_Store
+*.DS_Store
