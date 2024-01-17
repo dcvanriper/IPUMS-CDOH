@@ -1,0 +1,8 @@
+variable_name, variable_description, data_type
+year,"Year",Numeric
+statefips,"State FIPS code",Character
+state,"State name",Character
+countyfips,"County FIPS code",Character
+county,"County name",Character
+prop_dem_cty,"Proportion of a county's vote cast for the Democratic Party",Numeric 
+prop_gop_cty,"Proportion of a county's vote cast for the Republican Party",Numeric

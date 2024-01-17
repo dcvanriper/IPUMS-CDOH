@@ -1,0 +1,155 @@
+---
+title: 'Racism - county - residential segregation - index of dissimilarity'
+author: "David Van Riper"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tinytex)
+require(gt)
+require(readr)
+
+topic <- "residential-segregation"
+```
+
+## Contents
+* Description
+* Source of Measure
+* Input Data
+* Data Tables
+* Geographic Detail
+* Temporal Detail
+* Formula
+* Interpretation
+* Missing Data
+* Data Summary
+* Citation and Use
+
+## Description
+Residential segregation measures the physical separation of population groups into different areas (i.e., neighborhoods) in a geographic unit (i.e., a county or city). We report the index of dissmilarity ($D$) for United States counties in our data file. The index of dissimilarity is a measure of evenness and measures the proportion of a group's population that must move so that each sub-county geographic unit in a county has the same proportion of that group as the county. We use census tracts as our sub-county geographic unit because census tracts nest within counties.   
+
+$D$ is typically calculated using two population groups. We have computed the residential segregation measure for the following groups:
+
+* White alone:Black alone
+* White alone:Asian alone
+* White alone, not Hispanic or Latino:Hispanic or Latino
+
+## Source of Measure
+Chantarat, Tongtan, David C. Van Riper, and Rachel R. Hardeman. "Multidimensional structural racism predicts birth outcomes for Black and White Minnesotans." _Health Services Research_ 57, no. 3: 448-457. doi:10.1111/1475-6773.13976 
+
+## Input Data
+Steven Manson, Jonathan Schroeder, David Van Riper, Katherine Knowles, Tracy Kugler, Finn Roberts, and Steven Ruggles. IPUMS National Historical Geographic Information System: Version 18.0 [dataset]. Minneapolis, MN: IPUMS. 2023. http://doi.org/10.18128/D050.V18.0
+
+We use data from the U.S. Census Bureau's American Community Survey 5-year summary files. 
+
+## Data Tables
+The following IPUMS NHGIS tables should be requested when creating the input dataset:
+
+```{r, echo=FALSE, message=FALSE}
+# Load the table code and label information
+table_details <- read_csv(here::here("measures", topic, "data", "input", "table_code_label.csv"))
+
+# Create a gt() table from table_details
+table_details |> 
+  gt() |> 
+  cols_label(table_id = "Table ID",
+             table_name = "Table name") |> 
+  cols_width(
+    table_name ~ px(400)
+  )
+  
+```
+
+## Geographic Detail
+
+### Geographic Extent
+Data are available for the United States.
+
+### Geographic Units
+Data are available for counties or county equivalents in the United States.
+
+## Temporal Detail
+
+### Temporal Extent
+The American Community Survey (ACS) 5-year summary data are released every year, and each 5-year summary file contains survey responses pooled over a 5-year time span. For example, the 2015-2019 ACS 5-year data include survey responses collected from 2015-2019. The 2016-2020 ACS 5-year data include survey responses collected from 2016-2020. 
+
+In order to generate residential segregation measures for all counties in the United States, we must use the 5-year summary data. Other ACS data products, including the 1-year summary data, only include estimates for geographic units whose population exceeds a certain threshold. 
+
+## Formula 
+We compute the residential segregation measure ($D$) using the following formula:
+
+$$
+D = \frac{1}{2} \sum_{i=1}^N |\frac{a_i}{A} - \frac{b_i}{B}|
+$$
+
+where $D$ is the index of dissemilarity for a county, $N$ is the number of census tracts in the county, $a_i$ is the count of people in group $a$ in tract $i$, $A$ is the count of people in group $A$ in the county, $b_i$ is the count of people in group $b$ in tract $i$, and $B$ is the count of people in group $B$ in the county. 
+
+For our residential segregation measures, group $a$ is persons identifying as White alone, and group $k$ may be persons identifying as Black alone or Asian alone.
+
+## Interpretation
+The index of dissimilarity meausures the proportion of a group's population that must move so that each sub-county geographic unit in a county has the same proportion of that group as the county. Values for $D$ range from 0.0 to 1.0, with 0.0 representing no segregation and 1.0 representing complete segregation. An example can help you interpret values of $D$ you observe in the data file.
+
+Supposed group $A$ is the White alone population and group $B$ is the Black alone population, and all residents of the county identify as one of those groups. If $D$ is 0.75 (or 75%), then 75% of the Black alone population would need to exchange census tracts with the White alone population so that the proportion of Black alone within census tracts matched the proportion of Black alone in the county.  
+
+We will observe a value of 1.0 if every census tract in a county contains one and only one population group. We will observe a value of 0.0 if the proportion of each group in each census tract is the same as each group's county-level proportion. 
+
+## Missing data
+We are unable to compute indices of dissimilarity for some county - race/ethnicity combinations. If a county contains zero persons who identify as White alone, Black alone, or Asian alone, then one of the denominators in the formula will be zero. This yields an undefined value, and we are unable to compute an index of dissimilarity for the county - race/ethnicity combination. 
+
+## Data Summary
+```{r, echo=FALSE, message=FALSE}
+# Load the variable name, description and data type information
+variable_details <- read_csv(here::here("measures", topic, "data", "input", "variable_descriptions.csv"))
+
+# Create a gt() table from variable_details
+variable_details |> 
+  gt() |> 
+  cols_label(variable_name = "Variable name",
+             variable_description = "Variable description",
+             data_type = "Data type") |> 
+  cols_width(
+    variable_description ~ px(300)
+  )
+```
+
+## Citation and Use
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* REDISTRIBUTION: You will not redistribute the data without permission.
+
+  You may publish a subset of the data to meet journal requirements for accessing 
+  data related to a particular publication. Contact us for permission for any other 
+  redistribution; we will consider requests for free and commercial redistribution.
+
+* CITATION: You will cite CDOH appropriately.
+
+Publications and research reports employing this measure should include the following citation:
+
+* Rachel Hardeman, Claire Kamp Dush, Wendy Manning, and David Van Riper. Racism - county - residential segregation - index of dissimilarity. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2023. https://doi.org/10.18128/M130-013.2023-04
+
+For policy briefs, online resources, or articles in the popular press, we recommend that you cite the use of CDOH data as follows:
+
+* IPUMS CDOH, University of Minnesota, cdoh.ipums.org.
+
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+
+Send electronic material to: ipums@umn.edu
+
+Printed matter should be sent to:
+
+    IPUMS CDOH
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455

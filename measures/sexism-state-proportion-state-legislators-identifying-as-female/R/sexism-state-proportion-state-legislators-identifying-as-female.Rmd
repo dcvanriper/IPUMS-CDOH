@@ -1,0 +1,149 @@
+---
+title: 'Sexism - state - proportion of state legislators identifying as female'
+author: "David Van Riper"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tinytex)
+require(gt)
+require(readr)
+
+topic <- "sexism-state-proportion-state-legislators-identifying-as-female"
+```
+
+## Contents
+* Description
+* Source of Measure
+* Input Data
+* Geographic Detail
+* Temporal Detail
+* Formula
+* Interpretation
+* Notes
+* Data Summary
+* Citation and Use
+
+## Description
+The measure captures the proportion of state legislators who identify as female. We compute the proportion for the state legislature as a whole and for the state house and senate legislative chambers.  
+
+## Source of Measure
+Rapp, Kristen Schorpp, Vanessa V. Volpe, and Hannah Neukrug. "State-level sexism and women’s health care access in the United States: Differences by race/ethnicity, 2014–2019." _American Journal of Public Health_ 111, no. 10 (2021): 1796-1805.
+
+## Input Data
+The Center for American Women and Politics (CAWP) at Rutgers University-New Brunswick collects and publishes annual data from 2015-2022 on the number of female-identifying state legislators by state. The specific datasets we used to compute the percentages are: 
+
+* Center for American Women and Politics (CAWP). 2024. “Women in State Legislatures 2023.” New Brunswick, NJ: Center for American Women and Politics, Eagleton Institute of Politics, Rutgers University-New Brunswick. https://cawp.rutgers.edu/facts/levels-office/state-legislature/women-state-legislatures-2024. (Accessed January 5, 2024) 
+
+* Center for American Women and Politics (CAWP). 2022. “Women in State Legislatures 2022.” New Brunswick, NJ: Center for American Women and Politics, Eagleton Institute of Politics, Rutgers University-New Brunswick. https://cawp.rutgers.edu/facts/levels-office/state-legislature/women-state-legislatures-2022. (Accessed August 31, 2022) 
+
+* Center for American Women and Politics (CAWP). 2021. “Women in State Legislatures 2021.” New Brunswick, NJ: Center for American Women and Politics, Eagleton Institute of Politics, Rutgers University-New Brunswick. https://cawp.rutgers.edu/facts/levels-office/state-legislature/women-state-legislatures-2021. (Accessed August 31, 2022) 
+
+* Center for American Women and Politics (CAWP). 2020. “Women in State Legislatures 2020.” New Brunswick, NJ: Center for American Women and Politics, Eagleton Institute of Politics, Rutgers University-New Brunswick. https://cawp.rutgers.edu/facts/levels-office/state-legislature/women-state-legislatures-2020. (Accessed August 31, 2022) 
+
+* Center for American Women and Politics (CAWP). 2019. “Women in State Legislatures 2019.” New Brunswick, NJ: Center for American Women and Politics, Eagleton Institute of Politics, Rutgers University-New Brunswick. https://cawp.rutgers.edu/facts/levels-office/state-legislature/women-state-legislatures-2019. (Accessed August 31, 2022) 
+
+* Center for American Women and Politics (CAWP). 2018. “Women in State Legislatures 2018.” New Brunswick, NJ: Center for American Women and Politics, Eagleton Institute of Politics, Rutgers University-New Brunswick. https://cawp.rutgers.edu/facts/levels-office/state-legislature/women-state-legislatures-2018. (Accessed August 31, 2022) 
+
+* Center for American Women and Politics (CAWP). 2017. “Women in State Legislatures 2017.” New Brunswick, NJ: Center for American Women and Politics, Eagleton Institute of Politics, Rutgers University-New Brunswick. https://cawp.rutgers.edu/facts/levels-office/state-legislature/women-state-legislatures-2017. (Accessed August 31, 2022) 
+
+* Center for American Women and Politics (CAWP). 2016. “Women in State Legislatures 2016.” New Brunswick, NJ: Center for American Women and Politics, Eagleton Institute of Politics, Rutgers University-New Brunswick. https://cawp.rutgers.edu/facts/levels-office/state-legislature/women-state-legislatures-2016. (Accessed August 31, 2022) 
+
+* Center for American Women and Politics (CAWP). 2015. “Women in State Legislatures 2015.” New Brunswick, NJ: Center for American Women and Politics, Eagleton Institute of Politics, Rutgers University-New Brunswick. https://cawp.rutgers.edu/facts/levels-office/state-legislature/women-state-legislatures-2015. (Accessed August 31, 2022) 
+
+## Geographic Detail
+
+### Geographic Extent
+Data are available for the United States.
+
+### Geographic Units
+Data are available for each US state and the District of Columbia. 
+
+## Temporal Detail
+
+### Temporal Extent
+Data are available from 2015-2023. 
+
+### Temporal Frequency
+Data are available on an annual basis. 
+
+## Formula 
+We compute the proportion of state legislators identifying as female using the following formula:
+
+$$
+Proportion_{female_{ij}}  = \frac{Legislators_{female_{ij}}}{Legislators_{total_{ij}}}
+$$
+
+where the $Proportion_{female_{ij}}$  is the percentage of state $i$ legislators identifying as female in year $j$. The numerator is number of state $i$ legislators identifying as female in year $j$. The denominator is the number of legislators in state $i$ in year $j$.
+
+We compute house or senate chamber-specific percentages using the following formula:
+
+
+$$
+Proportion_{female_{ijk}}  = \frac{Legislators_{female_{ijk}}}{Legislators_{total_{ijk}}} 
+$$
+where $Proportion_{female_{ijk}}$  is the percentage of state $i$ legislators identifying as female in year $j$ and legislative chamber $k$. The numerator is the number of state $i$ legislators identifying as female in year $j$ and legislative chamber $k$. The denominator is the number of legislators in state $i$ in year $j$ and legislative chamber $k$.
+
+## Interpretation
+This measure represents the proportion of a state's legislators who identify as female in a particular year. 
+
+## Notes
+Nebraska has a unicameral state legislature; therefore, it has proportions for _prop_female_legis_ and _prop_female_senate_. We set its _prop_female_house_ value to _0_.
+
+## Data Summary
+```{r, echo=FALSE, message=FALSE}
+# Load the variable name, description and data type information
+variable_details <- read_csv(here::here("measures", topic, "data", "input", "variable_descriptions.csv"))
+
+# Create a gt() table from variable_details
+variable_details |> 
+  gt() |> 
+  cols_label(variable_name = "Variable name",
+             variable_description = "Variable description",
+             data_type = "Data type") |> 
+  cols_width(
+    variable_description ~ px(250)
+  )
+```
+
+## Citation and Use
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* REDISTRIBUTION: You will not redistribute the data without permission.
+
+  You may publish a subset of the data to meet journal requirements for accessing 
+  data related to a particular publication. Contact us for permission for any other 
+  redistribution; we will consider requests for free and commercial redistribution.
+
+* CITATION: You will cite CDOH appropriately.
+
+Publications and research reports employing this measure should include the following citation:
+
+* Claire Kamp Dush, Wendy Manning, and David Van Riper. Sexism - state - proportion of state legislators identifying as female. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2023. https://doi.org/10.18128/M130-006.2023-04 
+
+For policy briefs, online resources, or articles in the popular press, we recommend that you cite the use of CDOH data as follows:
+
+* IPUMS CDOH, University of Minnesota, cdoh.ipums.org.
+
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+
+Send electronic material to: ipums@umn.edu
+
+Printed matter should be sent to:
+
+    IPUMS CDOH
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455

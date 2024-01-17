@@ -1,0 +1,5 @@
+variable_name, variable_description, data_type
+year,"Year",Character
+statefips,"State FIPS code",Character
+state,"State name",Character
+indicator_paid_fam_leave, "Indicator whether a state has a paid family & medical leave insurance law in effect", Binary 

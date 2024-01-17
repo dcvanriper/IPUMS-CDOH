@@ -1,0 +1,167 @@
+---
+title: 'Cisheterosexism - county - same-sex households'
+author: "David Van Riper"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tinytex)
+require(gt)
+require(readr)
+
+topic <- "cisheterosexism-county-same-sex-households"
+```
+
+## Contents
+* Description
+* Source of Measure
+* Input Data
+* Data Table
+* Geographic Detail
+* Temporal Detail
+* Formula
+* Interpretation
+* Data Summary
+* Citation and Use
+
+## Description
+The 2020 Decennial Census of Population and Housing provides counts of same-sex households, both in marriages and in unmarried partnerships, for multiple levels of geography. We compute four proportions for all counties and county equivalents that existed at the time of the 2020 Decennial Census. 
+
+Our proportions include:
+
+* Proportion of same-sex unions among all unions 
+* Proportion of same-sex marriages among all marriages
+* Proportion of same-sex marriages among all same sex unions 
+* Proportion of same-sex unions among all households
+
+## Source of Measure
+Marino, F. A., Westrick-Payne, K. K., Manning, W. D., & Brown, S. L. (2024). Visualizing Concentrations of Couples and Same-Sex Couples across U.S. Counties. Socius, 10. https://doi.org/10.1177/23780231231222772.
+
+## Input Data
+Steven Manson, Jonathan Schroeder, David Van Riper, Katherine Knowles, Tracy Kugler, Finn Roberts, and Steven Ruggles. IPUMS National Historical Geographic Information System: Version 18.0 [dataset]. Minneapolis, MN: IPUMS. 2023. http://doi.org/10.18128/D050.V18.0
+
+We use data from the U.S. Census Bureau's 2020 Demographic and Housing Characteristics (DHC) summary file. 
+
+## Data Tables
+The following IPUMS NHGIS table should be requested when creating the input dataset:
+
+```{r, echo=FALSE, message=FALSE}
+# Load the table code and label information
+table_details <- read_csv(here::here("measures", topic, "data", "input", "table_code_label.csv"))
+
+# Create a gt() table from table_details
+table_details |> 
+  gt() |> 
+  cols_label(table_id = "Table ID",
+             table_name = "Table name") |> 
+  cols_width(
+    table_name ~ px(400)
+  )
+  
+```
+## Geographic Detail
+
+### Geographic Extent
+Data are available for the United States.
+
+### Geographic Units
+Data are available for counties or county equivalents in the United States.
+
+## Temporal Detail
+
+### Temporal Extent
+The 2020 Decennial Census of Population and Housing collected data based on individual's place of residence on April 1, 2020. 
+ 
+## Formulas 
+### Proportion of same-sex unions among all unions
+We compute the proportion of same-sex unions among all unions using the following formula:
+
+$$
+Proportion_{ssu_i} = \frac{(MCH_{ss_i} + UPH_{ss_i})}{(MCH_i + UPH_i)}
+$$
+where $Proportion_{ssu_i}$ is the proportion of same-sex unions among all unions in county $i$, $MCH_{ss_i}$ is the number of same-sex married couples in county $i$, $UPH_{ss_i}$ is the number of same-sex unmarried partner households in county $i$, $MCH_i$ is the number of married couples in county $i$, and $UPH_i$ is the number of unmarried partner households in county $i$. 
+
+### Proportion of same-sex marriages among all marriages
+We compute the proportion of same-sex marriages among all marriages using the following formula:
+
+$$
+Proportion_{ssm_i} = \frac{MCH_{ss_i}}{MCH_i}
+$$
+where $Proportion_{ssm_i}$ is the proportion of same-sex marriages among all marriages in county $i$, $MCH_{ss_i}$ is the number of same-sex married couples in county $i$, and $MCH_i$ is the number of married couples in county $i$. 
+
+### Proportion of same-sex marriages among all same sex unions 
+We compute the proportion of same-sex marriages among all same-sex unions using the following formula:
+
+$$
+Proportion_{m_i} = \frac{MCH_{ss_i}}{(MCH_{ss_i} + UPH_{ss_i})}
+$$ 
+where $Proportion_{m_i}$ is the proportion of same-sex marriages among all same-sex unions in county $i$, $MCH_{ss_i}$ is the number of same-sex married couples in county $i$, and $UPH_{ss_i}$ is the number of same-sex unmarried partner households in county $i$.
+
+### Proportion of same-sex unions among all households
+We compute the number of same-sex unions among all households using the following formula:
+
+$$
+Proportion_{ssu_i} = \frac{(MCH_{ss_i} + UPH_{ss_i})}{HH_i}
+$$
+where $Proportion_{ssu_i}$ is the proportion of same-sex unions among all households in county $i$, $MCH_{ss_i}$ is the number of same-sex married couples in county $i$, $UPH_{ss_i}$ is the number of same-sex unmarried partner households in county $i$, $HH_i$ is the number of households in county $i$. 
+
+## Interpretation
+All four of these measures are proportions that may range from 0.0 to 1.0, and they all capture slightly different concepts. The _proportion of same-sex unions among all unions_ measure captures the concentration of same-sex unions (same-sex couples that are married or in unmarried partnerships) among all unions (married couples or unmarried partnerships) in a given county. The _proportion of same-sex marriages among all marriages_ measure captures the concentration of same-sex marriage among all married couples in a given county. The _proportion of same-sex marriages among all same sex unions_ measure captures marriage uptake among same-sex couples in a given county. Finally, the _proportion of same-sex unions among all households_ measure captures the general concentration of same-sex unions among all households in a given county.
+
+## Data Summary
+```{r, echo=FALSE, message=FALSE}
+# Load the variable name, description and data type information
+variable_details <- read_csv(here::here("measures", topic, "data", "input", "variable_descriptions.csv"))
+
+# Create a gt() table from variable_details
+variable_details |> 
+  gt() |> 
+  cols_label(variable_name = "Variable name",
+             variable_description = "Variable description",
+             data_type = "Data type") |> 
+  cols_width(
+    variable_description ~ px(150)
+  )
+```
+
+## Citation and Use
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* REDISTRIBUTION: You will not redistribute the data without permission.
+
+  You may publish a subset of the data to meet journal requirements for accessing 
+  data related to a particular publication. Contact us for permission for any other 
+  redistribution; we will consider requests for free and commercial redistribution.
+
+* CITATION: You will cite CDOH appropriately.
+
+Publications and research reports employing this measure should include the following citation:
+
+* Claire Kamp Dush, Wendy Manning, and David Van Riper. Cisheterosexism - county - same-sex households. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2023. https://doi.org/10.18128/M130-008.2023-04 
+
+For policy briefs, online resources, or articles in the popular press, we recommend that you cite the use of CDOH data as follows:
+
+* IPUMS CDOH, University of Minnesota, cdoh.ipums.org.
+
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+
+Send electronic material to: ipums@umn.edu
+
+Printed matter should be sent to:
+
+    IPUMS CDOH
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455

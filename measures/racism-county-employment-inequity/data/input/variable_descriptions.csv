@@ -1,0 +1,9 @@
+variable_name, variable_description, data_type
+year,"Year",Character
+statefips,"State FIPS code",Character
+state,"State name",Character
+countyfips,"County FIPS code",Character
+county,"County name",Character
+emp_wanh_ba,"Employment inequity between White alone, Not Hispanic or Latino, and Black alone" ,Numeric
+emp_wanh_h,"Employment inequity between White alone, Not Hispanic or Latino, and Hispanic or Latino",Numeric
+emp_wanh_aa,"Employment inequity between White alone, Not Hispanic or Latino, and Asian alone",Numeric

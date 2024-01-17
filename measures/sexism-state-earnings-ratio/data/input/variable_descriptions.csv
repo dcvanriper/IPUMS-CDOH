@@ -1,0 +1,5 @@
+variable_name, variable_description, data_type
+year,"Year",Numeric
+statefips,"State FIPS code",Character
+state,"State name",Character
+ratio_earnings, "Earnings ratio between male and female salary and wage workers", Numeric 

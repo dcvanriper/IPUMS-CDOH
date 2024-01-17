@@ -1,0 +1,6 @@
+table_id, table_name
+YEAR,"Year"
+STATEFIP,"State FIPS code"
+ASECWT,"CPS Annual Social and Economic Supplement Person Weight" 
+POVERTY,"Poverty status reported in the original CPS PUMS"
+SEX,"Sex"

@@ -1,0 +1,5 @@
+variable_name, variable_description, data_type
+year,"Year",Numeric
+statefips,"State FIPS code",Character
+state,"State name",Character
+ratio_weighted_poverty,"Weighted poverty ratio between females and males",Numeric

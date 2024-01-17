@@ -1,0 +1,114 @@
+---
+title: 'Politics - county - presidential election results'
+author: "David Van Riper"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tinytex)
+require(gt)
+require(readr)
+
+topic <- "politics-county-presidential-election-results"
+```
+
+## Contents
+* Description
+* Input Data
+* Geographic Detail
+* Temporal Detail
+* Formula
+* Interpretation
+* Data Summary
+* Citation and Use
+
+## Description
+The county presidential election results measure provides the proportion of a county's votes cast for the Democratic party or the Republican party in presidential elections from 2000-2020.  
+
+## Input Data
+MIT Election Data and Science Lab, 2018, "County Presidential Election Returns 2000-2020", https://doi.org/10.7910/DVN/VOQCHQ, Harvard Dataverse, V11, UNF:6:HaZ8GWG8D2abLleXN3uEig== [fileUNF]
+
+## Geographic Detail
+
+### Geographic Extent
+Data are available for the United States.
+
+### Geographic Units
+Data are available for counties or county equivalents in the United States.
+
+## Temporal Detail
+
+### Temporal Extent
+The "County Presidential Election Returns 2000-2020" dataset provides county-level election returns from 2000-2020. 
+
+### Temporal Frequency
+Data are available on an every four-year basis from 2000-2020. 
+
+## Formula 
+We compute the proportion of votes received by the Democratic or Republican party using the following formula:
+
+$$
+Prop_{ij} = \frac{Votes_{ij}}{Votes_i} 
+$$
+where $Prop_{ij}$ is the proportion of county $i$'s votes cast for party $j$, $Votes_{ij}$ are the number of votes cast in county $i$ for party $j$, and $Votes_i$ is the total number of votes cast in county $i$.  
+
+## Interpretation
+This measure represents the county-level proportion of votes cast for the Democratic or Republican party in each presidential election from 2000-2020.
+
+## Data Summary
+```{r, echo=FALSE, message=FALSE}
+# Load the variable name, description and data type information
+variable_details <- read_csv(here::here("measures", topic, "data", "input", "variable_descriptions.csv"))
+
+# Create a gt() table from variable_details
+variable_details |> 
+  gt() |> 
+  cols_label(variable_name = "Variable name",
+             variable_description = "Variable description",
+             data_type = "Data type") |> 
+  cols_width(
+    variable_description ~ px(300)
+  )
+```
+
+## Citation and Use
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* REDISTRIBUTION: You will not redistribute the data without permission.
+
+  You may publish a subset of the data to meet journal requirements for accessing 
+  data related to a particular publication. Contact us for permission for any other 
+  redistribution; we will consider requests for free and commercial redistribution.
+
+* CITATION: You will cite CDOH appropriately.
+
+Publications and research reports employing this measure should include the following citation:
+
+* Claire Kamp Dush, Wendy Manning, and David Van Riper. Politics - county - presidential election results. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2023. https://doi.org/10.18128/M130-014.2023-04
+
+For policy briefs, online resources, or articles in the popular press, we recommend that you cite the use of CDOH data as follows:
+
+* IPUMS CDOH, University of Minnesota, cdoh.ipums.org.
+
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+
+Send electronic material to: ipums@umn.edu
+
+Printed matter should be sent to:
+
+    IPUMS CDOH
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455

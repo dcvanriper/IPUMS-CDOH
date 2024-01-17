@@ -1,0 +1,19 @@
+variable_name, variable_description, data_type
+year,"Year",Numeric
+statefips,"State FIPS code",Character
+state,"State name",Character
+senate_democrats_women,"Count of female Democratic state senators",Numeric 
+senate_republicans_women,"Count of female Republicans state senators",Numeric
+senate_independents_women,"Count of female Independent state senators",Numeric
+senate_total_women,"Count of females state senators",Numeric
+senate_total,"Count of state senators",Numeric
+senate_prop_female,"Proportion of state senators who identify as female",Numeric
+house_democrats_women,"Count of female Democratic state house members",Numeric
+house_republicans_women,"Count of female Republicans state house members",Numeric
+house_independents_women,"Count of female Independent state house members",Numeric
+house_total_women,"Count of females serving in state house",Numeric
+house_total,"Count of state house members",Numeric
+house_prop_female,"Proportion of state house members who identify as female",Numeric
+legis_total,"Count of state legislators",Numeric
+legis_total_women,"Count of female state legislators",Numeric
+legis_prop_female,"Proportion of state legislators who identify as female",Numeric

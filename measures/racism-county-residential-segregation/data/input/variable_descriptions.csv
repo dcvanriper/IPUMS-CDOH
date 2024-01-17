@@ -1,0 +1,9 @@
+variable_name, variable_description, data_type
+year,"Year",Character
+statefips,"State FIPS code",Character
+state,"State name",Character
+countyfips,"County FIPS code",Character
+county,"County name",Character
+d_wa_ba,"Index of dissimilarity between White alone and Black alone" ,Numeric
+d_wanh_h,"Index of dissimilarity between White alone, Not Hispanic or Latino, and Hispanic or Latino",Numeric
+d_wa_aa,"Index of dissimilarity between White alone and Asian alone",Numeric

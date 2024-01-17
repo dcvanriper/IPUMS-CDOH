@@ -1,0 +1,151 @@
+---
+title: "Sexism - state - poverty ratio"
+author: "David Van Riper"
+date: '`r Sys.Date()`'
+output: pdf_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tinytex)
+require(gt)
+require(readr)
+
+topic <- "sexism-state-poverty-ratio"
+```
+
+## Contents
+* Description
+* Source of Measure
+* Input Data
+* Variables
+* Geographic Detail
+* Temporal Detail
+* Formula
+* Interpretation
+* Data Summary
+* Citation and Use
+
+## Description
+The state-level poverty ratio compares the proportion of females living in poverty to the proportion of males living in poverty in a given state in a given year. 
+
+## Source of Measure
+Rapp, Kristen Schorpp, Vanessa V. Volpe, and Hannah Neukrug. "State-level sexism and women’s health care access in the United States: Differences by race/ethnicity, 2014–2019." _American Journal of Public Health_ 111, no. 10 (2021): 1796-1805.
+
+## Input Data
+Sarah Flood, Miriam King, Renae Rodgers, Steven Ruggles, J. Robert Warren, Daniel Backman, Annie Chen, Grace Cooper, Stephanie Richards, Megan Schouweiler, and Michael Westberry. IPUMS CPS: Version 11.0 [dataset]. Minneapolis, MN: IPUMS, 2023. https://doi.org/10.18128/D030.V11.0
+
+## Variables
+The following IPUMS CPS (Current Population Survey) variables should be requested when creating the input dataset:
+  
+```{r, echo=FALSE, message=FALSE}
+# Load the table code and label information
+table_details <- read_csv(here::here("measures", topic, "data", "input", "table_code_label.csv"))
+
+# Create a gt() table from table_details
+table_details |> 
+  gt() |> 
+  cols_label(table_id = "Table ID",
+             table_name = "Table name") |> 
+  cols_width(
+    table_name ~ px(400)
+  )
+  
+```
+
+The Bureau of Labor Statistics measures poverty for families, but it attaches the poverty status to the individuals in the family. This measure uses an individual's poverty status and their sex to calculate the sex-specific poverty ratios. 
+
+## Geographic Detail
+  
+### Geographic Extent
+Data are available for the United States.
+
+### Geographic Units
+Data are available for each US state plus the District of Columbia.
+
+## Temporal Detail
+
+### Temporal Extent
+The Current Population Survey (CPS) data are available in machine-readable format from 1962-2022, but the variables required to calculate the ratio are only available from 1968-2023. We compute the poverty ratio for 2015-2023 to stay consistent with other state-level sexism ratios (e.g., labor force ratio, earnings ratio). 
+
+### Temporal Frequency
+Data are available on a yearly basis. 
+
+## Formula 
+
+We compute the poverty ratio using the following formula:
+  
+$$
+  poverty_{ratio_ij} = \frac{poverty_{female_ij}}{poverty_{male_ij}} 
+$$
+  
+where $poverty_{ratio_ij}$ is the poverty ratio in state $i$ in year $j$, $poverty_{female_ij}$ is the weighted proportion of females living in poverty in state $i$ in year $j$, and $poverty_{male_ij}$ is the weighted proportion of males living in poverty in state $i$ in year $j$. 
+
+The sex-specific poverty proportions are computed using the following formula:
+  
+$$
+  poverty_{female_ij} = \frac{\sum{POVERTY_ij * ASECWT_ij}}{\sum{ASECWT_ij}}
+$$
+  
+where $POVERTY_{ij}$ equals 1 if a female in state $i$ in year $j$ is living below the poverty line or 0 if a female in state $i$ in year $j$ is living above the poverty line. The $ASECWT_{ij}$ is the ASEC weight for the female in state $i$ in year $j$. The numerator is the weighted sum of females living below the poverty line in state $i$ in year $j$. The denominator is the weighted sum of females in state$i$ in year $j$ who are in the universe. 
+
+To calculate the poverty proportion for me, the same formula is applied to males in the CPS. 
+
+## Interpretation
+This measure compares the proportion of females living below the poverty line to the proportion of males living below the poverty line. If the proportion of females living below the poverty line is greater than the proportion of males living below the poverty line, the poverty ratio will be greater than 1.0. If the proportion of females living below the poverty line is less than the proportion of males living below the poverty line, the poverty ratio will be less than 1.0.
+
+## Data Summary
+```{r, echo=FALSE, message=FALSE}
+# Load the variable name, description and data type information
+variable_details <- read_csv(here::here("measures", topic, "data", "input", "variable_descriptions.csv"))
+
+# Create a gt() table from variable_details
+variable_details |> 
+  gt() |> 
+  cols_label(variable_name = "Variable name",
+             variable_description = "Variable description",
+             data_type = "Data type") |> 
+  cols_width(
+    variable_description ~ px(250)
+  )
+```
+  
+## Citation and Use
+  All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+  
+  * REDISTRIBUTION: You will not redistribute the data without permission.
+
+You may publish a subset of the data to meet journal requirements for accessing 
+data related to a particular publication. Contact us for permission for any other 
+redistribution; we will consider requests for free and commercial redistribution.
+
+* CITATION: You will cite CDOH appropriately.
+
+Publications and research reports employing this measure should include the following citation:
+  
+  * Claire Kamp Dush, Wendy Manning, and David Van Riper. Sexism - state - poverty ratio. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2023. https://doi.org/10.18128/M130-003.2023-04
+
+For policy briefs, online resources, or articles in the popular press, we recommend that you cite the use of CDOH data as follows:
+  
+  * IPUMS CDOH, University of Minnesota, cdoh.ipums.org.
+
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+
+Send electronic material to: ipums@umn.edu
+
+Printed matter should be sent to:
+
+    IPUMS CDOH
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455

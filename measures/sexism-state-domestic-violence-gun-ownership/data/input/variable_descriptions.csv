@@ -1,0 +1,5 @@
+variable_name, variable_description, data_type
+year,"Year",Numeric
+statefips,"State FIPS code",Character
+state,"State name",Character
+indicator_dv, "Indicates whether a state has a law prohibiting gun ownership by domestic violence offenders", Binary 

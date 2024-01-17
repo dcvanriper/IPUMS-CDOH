@@ -1,0 +1,10 @@
+variable_name, variable_description, data_type
+year,"Year",Numeric
+statefips,"State FIPS code",Character
+state,"State name",Character
+countyfips,"County FIPS code",Character
+county,"County name",Character
+prop_same_sex_unions,"Proportion of same-sex unions among all unions",Numeric 
+prop_same_sex_married_all_marriages,"Proportion of same-sex marriages among all marriages",Numeric
+prop_same_sex_married_all_same_sex_unions,"Proportion of same-sex marriages among all same-sex unions",Numeric
+prop_same_sex_households,"Proportion of same-sex unions among all households",Numeric

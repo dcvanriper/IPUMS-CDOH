@@ -1,0 +1,9 @@
+variable_name, variable_description, data_type
+year,"Year",Character
+statefips,"State FIPS code",Character
+state,"State name",Character
+countyfips,"County FIPS code",Character
+county,"County name",Character
+ho_wanh_ba,"Homeownership inequity between White alone, Not Hispanic or Latino-headed households, and Black alone-headed households" ,Numeric
+ho_wanh_h,"Homeownership inequity between White alone, Not Hispanic or Latino-headed households, and Hispanic or Latino-headed households",Numeric
+ho_wanh_aa,"Homeownership inequity between White alone, Not Hispanic or Latino-headed households, and Asian alone-headed households",Numeric

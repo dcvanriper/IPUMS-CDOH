@@ -1,0 +1,6 @@
+variable_name, variable_description, data_type
+year,"Year",Character
+statefips,"State FIPS code",Character
+state,"State name",Character
+ratio_lab_force, "Labor force ratio between male and female salary and wage workers", Numeric 
+

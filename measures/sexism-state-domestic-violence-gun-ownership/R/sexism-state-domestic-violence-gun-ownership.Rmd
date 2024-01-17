@@ -1,0 +1,117 @@
+---
+title: 'Sexism - state - domestic violence and gun ownership'
+author: "David Van Riper"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tinytex)
+require(gt)
+require(readr)
+
+topic <- "sexism-state-domestic-violence-gun-ownership"
+```
+
+## Contents
+* Description
+* Source of Measure
+* Input Data
+* Geographic Detail
+* Temporal Detail
+* Formula
+* Interpretation
+* Data Summary
+* Citation and Use
+
+## Description
+The state-level domestic violence and gun ownership measure denotes whether a state has a law that prohibits domestic violence offenders from owning firearms above and beyond federal law. 
+
+## Source of Measure
+Rapp, Kristen Schorpp, Vanessa V. Volpe, and Hannah Neukrug. "State-level sexism and women’s health care access in the United States: Differences by race/ethnicity, 2014–2019." _American Journal of Public Health_ 111, no. 10 (2021): 1796-1805.
+
+## Input Data
+State Firearms Laws Database, 1991-2020. http://www.statefirearmlaws.org/.
+
+## Geographic Detail
+
+### Geographic Extent
+Data are available for the United States.
+
+### Geographic Units
+The State Firearms Laws Database includes data for all US states except the District of Columbia. Thus, we do not have a domestic violence and gun ownership indicator for the District of Columbia.
+
+## Temporal Detail
+
+### Temporal Extent
+The State Firearms Laws Database captures gun legislation enacted by states from 1991-2020. 
+
+### Temporal Frequency
+Data are available on a yearly basis. We include an indicator value for each state-year combination for the 1991-2020 time period. 
+
+## Formula 
+For a state $i$ in year $j$, we assign a value of _1_ if there is state law that prohibits domestic violence offenders from owning firearms above and beyond federal law. We assign a value of _0_ if there is no state law prohibiting domestic violence offenders from owning firearms above and beyond federal law. 
+
+## Interpretation
+States with laws prohibiting domestic violence offenders from owning firearms in a particular year receive a value of _1_, while states without such laws in a particular year receive a value of _0_.
+
+The laws vary from state to state. The original data source provides a considerable amount of detail about each state's firearm laws, including prohibitions, whether police can remove firearms owned by offenders, and the level of offence that must be met for an offender to be subject to the law. Scientists interested in specific details related to particular states should consult the original data source. 
+
+Our coding system differs from Rapp et al. We use a value of _1_ to indicate the existence of a state law, while Rapp et al. used a value of _0_ to indicate the existence of such laws. 
+
+## Data Summary
+```{r, echo=FALSE, message=FALSE}
+# Load the variable name, description and data type information
+variable_details <- read_csv(here::here("measures", topic, "data", "input", "variable_descriptions.csv"))
+
+# Create a gt() table from variable_details
+variable_details |> 
+  gt() |> 
+  cols_label(variable_name = "Variable name",
+             variable_description = "Variable description",
+             data_type = "Data type") |> 
+  cols_width(
+    variable_description ~ px(300)
+  )
+```
+
+## Citation and Use
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* REDISTRIBUTION: You will not redistribute the data without permission.
+
+  You may publish a subset of the data to meet journal requirements for accessing 
+  data related to a particular publication. Contact us for permission for any other 
+  redistribution; we will consider requests for free and commercial redistribution.
+
+* CITATION: You will cite CDOH appropriately.
+
+Publications and research reports employing this measure should include the following citation:
+
+* Claire Kamp Dush, Wendy Manning, and David Van Riper. Sexism - state - domestic violence and gun ownership. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2023. https://doi.org/10.18128/M130-005.2023-04 
+
+For policy briefs, online resources, or articles in the popular press, we recommend that you cite the use of CDOH data as follows:
+
+* IPUMS CDOH, University of Minnesota, cdoh.ipums.org.
+
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+
+Send electronic material to: ipums@umn.edu
+
+Printed matter should be sent to:
+
+    IPUMS CDOH
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455

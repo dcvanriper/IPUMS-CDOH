@@ -1,0 +1,138 @@
+---
+title: "Sexism - state - abortion access"
+author: "David Van Riper"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tinytex)
+require(gt)
+require(readr)
+
+topic <- "sexism-state-abortion-access"
+```
+
+## Contents
+* Description
+* Source of Measure
+* Input Data
+* Geographic Detail
+* Temporal Detail
+* Formula
+* Interpretation
+* Data Summary
+* Citation and Use
+
+## Description
+The state-level abortion access measure reports the proportion of a state's females aged 15-44 who reside in counties with an abortion provider by year and month from 2009-2022. 
+
+## Source of Measure
+Rapp, Kristen Schorpp, Vanessa V. Volpe, and Hannah Neukrug. "State-level sexism and women’s health care access in the United States: Differences by race/ethnicity, 2014–2019." _American Journal of Public Health_ 111, no. 10 (2021): 1796-1805.
+
+## Input Data
+### Abortion provider data
+Myers, Caitlin K. 2021. “County-by-Month Distances to Nearest Abortion Provider.” OSF. July 16. doi:10.17605/OSF.IO/PFXQ3.
+
+Rapp et al. cite the Guttmacher Institute as the source for their abortion access measure. The Guttmacher measure is only available for the years 2015 and 2017. Myers' dataset includes abortion access measures by month for every year from 2009-2022. Myers' dataset is updated monthly, and when a new dataset is released, the prior version is moved to an archive folder in the Myers Abortion Facility Database. Our measure uses the "2023.09.01_abortionaccess_countyxmonth.csv" file available from https://osf.io/pfxq3/. The"2023.09.01_abortionaccess_countyxmonth.csv" contains monthly access measures from 2009 through October 2023. 
+
+### Population estimates
+The "County-by-Month Distances to Nearest Abortion Provider" dataset does not contain the population counts for females, aged 15-44, for counties or county equivalents in Alaska or Hawaii. We use the U.S. Census Bureau's _Annual County and Puerto Rico Municipio Resident Population Estimates by Selected Age Groups and Sex_ to fill in the missing data. To cover the complete temporal and geographic extent of the "County-by-Month Distances to Nearest Abortion Provider" dataset, we use population estimates data from 2000-2009, 2010-2019, and 2020-2022.
+
+#### 2000-2009 Population Estimates source
+U.S. Census Bureau. 2010. "CC-EST2009-AGESEX-[ST-FIPS]: Annual Estimates of the Resident Population by Selected Age Groups and Sex for Counties in [STATE]: April 1, 2000 to July 1, 2009." https://www2.census.gov/programs-surveys/popest/datasets/2000-2009/counties/asrh/.
+
+#### 2010-2019 Population Estimates source 
+U.S. Census Bureau. 2022. "CC-EST2019-AGESEX-[ST-FIPS]: Annual County and Puerto Rico Municipio Resident Population Estimates by Selected Age Groups and Sex: April 1, 2010 to July 1, 2019." https://www2.census.gov/programs-surveys/popest/datasets/2010-2019/counties/asrh/.
+
+#### 2020-2022 Population Estimates source
+U.S. Census Bureau, 2022. "CC-EST2022-AGESEX-[ST-FIPS]: Annual County and Puerto Rico Municipio Resident Population Estimates by Selected Age Groups and Sex: April 1, 2020 to July 1, 2022." https://www2.census.gov/programs-surveys/popest/datasets/2020-2022/counties/asrh/. 
+
+## Geographic Detail
+
+### Geographic Extent
+Data are available for the United States.
+
+### Geographic Units
+Data are available for each US state and the District of Columbia. 
+
+## Temporal Detail
+
+### Temporal Extent
+Data are available from 2009-2022. 
+
+### Temporal Frequency
+Data are available on a monthly basis. 
+
+## Formula 
+We compute the abortion access measure using the following formula:
+  
+$$
+  Access_{ijk}  = \frac{\sum_{l=1}^m {(Females_{15-44_{jl}} * County_{abortion_{jkl}})}}{Females_{15-44_{ij}}} 
+$$
+  
+where $Access_{ijk}$ is the proportion of state $i$'s females, aged 15-44, in year $j$ and month $k$ who reside in a county with an abortion provider. The numerator is the state-level count of females aged 15-44 who reside in a county $l$ with an abortion provider in year $j$ and month $k$. $Females_{15-44_{jl}}$ is the count of females aged 15-44 in county $l$ in year $j$.  $County_{abortion_{jkl}}$ is an indicator variable whether county $l$ has an abortion provider in year $j$ and month $k$. The summation operator sums the count of females aged 15-44 for all counties in a given state. The denominator is the number of females aged 15-44 residing in state $i$ in year $j$.
+
+## Interpretation
+This measure represents the proportion of a state's female, aged 15-44, population residing in counties with an abortion provider in a particular year and month. 
+
+We report proportions by state-year-month, but the estimate of the female, aged 15-44, population is only available on an annual basis. Thus, while our proportion is reported monthly, the counts in the denominator and the $\sum{Females_{15-44_{jl}}}$ in the numerator are constant for all months in a particular year (e.g., if the count of females, age 15-44, in Minnesota in 2019 is 1,082,712, we use that in the denominator for all 12 months in 2019). 
+
+Within a particular year, we observe changes in the proportion if a county loses all its abortion providers or a county moves from zero to one or more abortion providers. For example, the proportion of females, aged 15-44, residing in an Alabama county with an abortion provider decreased from _0.26_ in June 2014 to _0.19_ in July 2014. We observe this decrease because a county or counties in Alabama lost their abortion provider(s) between those months.       
+
+## Data Summary
+```{r, echo=FALSE, message=FALSE}
+# Load the variable name, description and data type information
+variable_details <- read_csv(here::here("measures", topic, "data", "input", "variable_descriptions.csv"))
+
+# Create a gt() table from variable_details
+variable_details |> 
+  gt() |> 
+  cols_label(variable_name = "Variable name",
+             variable_description = "Variable description",
+             data_type = "Data type") |> 
+  cols_width(
+    variable_description ~ px(300)
+  )
+```
+  
+## Citation and Use
+  All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+  
+  * REDISTRIBUTION: You will not redistribute the data without permission.
+
+You may publish a subset of the data to meet journal requirements for accessing 
+data related to a particular publication. Contact us for permission for any other 
+redistribution; we will consider requests for free and commercial redistribution.
+
+* CITATION: You will cite CDOH appropriately.
+
+Publications and research reports employing this measure should include the following citation:
+  
+  * Hyunjae Kwon, Claire Kamp Dush, Wendy Manning, and David Van Riper. Sexism - state - abortion access. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2023. https://doi.org/10.18128/M130-007.2023-04
+
+For policy briefs, online resources, or articles in the popular press, we recommend that you cite the use of CDOH data as follows:
+  
+  * IPUMS CDOH, University of Minnesota, cdoh.ipums.org.
+
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+
+Send electronic material to: ipums@umn.edu
+
+Printed matter should be sent to:
+
+    IPUMS CDOH
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455

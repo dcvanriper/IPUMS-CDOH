@@ -1,0 +1,6 @@
+variable_name, variable_description, data_type
+year,"Year",Numeric
+month,"Month",Numeric
+statefips,"State FIPS code",Character
+state,"State name",Character
+prop_abortion,"Proportion of a state's female, aged 15-44, population residing in a county with an abortion provider",Numeric

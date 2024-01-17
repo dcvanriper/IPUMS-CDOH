@@ -1,0 +1,164 @@
+---
+title: 'Racism - county - educational inequity'
+author: "David Van Riper"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tinytex)
+require(gt)
+require(readr)
+
+topic <- "educational-inequity"
+```
+
+## Contents
+* Description
+* Source of Measure
+* Input Data
+* Data Tables
+* Geographic Detail
+* Temporal Detail
+* Formula
+* Interpretation
+* Missing Data
+* Data Summary
+* Citation and Use
+
+## Description
+Educational inequity is the ratio between the proportion of people aged 25 years and older identifying as White alone, not Hispanic or Latino, with a college degree or higher and the proportion of people aged 25 years and older identifying as a different race/ethnic group with a college degree or higher. We have computed the educational inequity measure for the following groups:
+
+* White alone, not Hispanic or Latino:Black alone
+* White alone, not Hispanic or Latino:Asian alone
+* White alone, not Hispanic or Latino:Hispanic or Latino
+
+## Source of Measure
+Chantarat, Tongtan, David C. Van Riper, and Rachel R. Hardeman. "Multidimensional structural racism predicts birth outcomes for Black and White Minnesotans." _Health Services Research_ 57, no. 3: 448-457. doi:10.1111/1475-6773.13976 
+
+## Input Data
+Steven Manson, Jonathan Schroeder, David Van Riper, Katherine Knowles, Tracy Kugler, Finn Roberts, and Steven Ruggles. IPUMS National Historical Geographic Information System: Version 18.0 [dataset]. Minneapolis, MN: IPUMS. 2023. http://doi.org/10.18128/D050.V18.0
+
+We use data from the U.S. Census Bureau's American Community Survey 5-year summary files. 
+
+## Data Tables
+The following IPUMS NHGIS tables should be requested when creating the input data:
+
+```{r, echo=FALSE, message=FALSE}
+# Load the table code and label information
+table_details <- read_csv(here::here("measures", topic, "data", "input", "table_code_label.csv"))
+
+# Create a gt() table from table_details
+table_details |> 
+  gt() |> 
+  cols_label(table_id = "Table ID",
+             table_name = "Table name") |> 
+  cols_width(
+    table_name ~ px(400)
+  )
+  
+```
+
+## Geographic Detail
+
+### Geographic Extent
+Data are available for the United States.
+
+### Geographic Units
+Data are available for counties or county equivalents in the United States.
+
+## Temporal Detail
+
+### Temporal Extent
+The American Community Survey (ACS) 5-year summary data are released every year, and each 5-year summary file contains survey responses pooled over a 5-year time span. For example, the 2015-2019 ACS 5-year data include survey responses collected from 2015-2019. The 2016-2020 ACS 5-year data include survey responses collected from 2016-2020. 
+
+In order to generate educational inequity measures for all counties in the United States, we must use the 5-year summary data. Other ACS data products, including the 1-year summary data, only include estimates for geographic units whose population exceeds a certain threshold. 
+
+## Formula 
+We compute the educational inequity ratio using the following formula:
+
+$$
+educ_{inequity_{ijk}} = \frac{prop_{collegedegree_{ij}}}{prop_{collegedegree_{ik}}} 
+$$
+
+where $educ_{inequity_{ijk}}$ is the educational inequity ratio in county $i$ between groups $j$ and $k$, $prop_{collegedegree_{ij}}$ is the proportion of persons aged 25 and older with a college degree or higher in county $i$ and group $j$, and $prop_{collegedegree_{ik}}$ is the proportion of persons aged 25 and older with a college degree or higher in county $i$ and group$k$.
+
+The group-specific educational attainment proportions are computed using the following formula:
+
+$$
+prop_{collegedegree_{ij}} = \frac{N_{collegedegreehigher_ij}}{N_{ij}}
+$$
+
+where $prop_{collegedegree_{ij}}$ is the proportion of persons aged 25 years and older with a college degree or higher in county $i$ and group $j$, $N_{collegedegreehigher_ij}$ is the number of persons aged 25 years and older with a college degree or higher in county $i$ and group $j$, and $N_{ij}$ is the number of persons aged 25 and older in county $i$ and group $j$. 
+
+## Interpretation
+This measure compares the proportion of persons aged 25 and older with a college degree or higher in a particular race/ethnicity category with the proportion of persons aged 25 and older with a college degree or higher in a different race/ethnicity category. If the proportion for the numerator race/ethnicity category is greater than the proportion for the denominator race/ethnicity category, the ratio will be greater than 1.0. If the proportion for the numerator race/ethnicity category is less than the proportion for the denominator race/ethnicity category, the ratio will be less than 1.0.
+
+For the measures in the data file, we use the White alone, not Hispanic or Latino category as the numerator for all the educational inequity ratios, and the denominator is one of the following three categories:
+
+* Black or African American alone
+* Asian alone
+* Hispanic or Latino
+
+Since the numerator and denominator are both percentages, the overall count of persons age 25 and older for a specific race/ethnicity category has less impact on the resulting ratio. 
+
+## Missing data
+We are unable to compute educational inequity ratios for some county - race/ethnicity combinations. If both the numerator and denominator proportions are zero, the educational inequity ratio is undefined. If the denominator proportion is zero, then the ratio is also undefined. When we observe these cases, we report the ratios as missing.  
+
+## Data Summary
+```{r, echo=FALSE, message=FALSE}
+# Load the variable name, description and data type information
+variable_details <- read_csv(here::here("measures", topic, "data", "input", "variable_descriptions.csv"))
+
+# Create a gt() table from variable_details
+variable_details |> 
+  gt() |> 
+  cols_label(variable_name = "Variable name",
+             variable_description = "Variable description",
+             data_type = "Data type") |> 
+  cols_width(
+    variable_description ~ px(300)
+  )
+```
+
+
+## Citation and Use
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* REDISTRIBUTION: You will not redistribute the data without permission.
+
+  You may publish a subset of the data to meet journal requirements for accessing 
+  data related to a particular publication. Contact us for permission for any other 
+  redistribution; we will consider requests for free and commercial redistribution.
+
+* CITATION: You will cite CDOH appropriately.
+
+Publications and research reports employing this measure should include the following citation:
+
+* Rachel Hardeman, Claire Kamp Dush, Wendy Manning, and David Van Riper. Racism - county - educational inequity. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2023. https://doi.org/10.18128/M130-009.2023-04
+
+For policy briefs, online resources, or articles in the popular press, we recommend that you cite the use of CDOH data as follows:
+
+* IPUMS CDOH, University of Minnesota, cdoh.ipums.org.
+
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+
+Send electronic material to: ipums@umn.edu
+
+Printed matter should be sent to:
+
+    IPUMS CDOH
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455
