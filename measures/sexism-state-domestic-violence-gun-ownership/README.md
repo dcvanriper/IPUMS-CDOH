@@ -8,4 +8,4 @@ After you have acquired the data and placed them in the `/data/input/` directory
 ## Documentation
 To generate the PDF documentation for the measure, you should knit the scirpt in the `/R` directory with the `.Rmd` file extension. Knit will convert the R markdown file to a PDF in the `/R` directory. 
 
-The information that populates the`Data Summary` section of the documentation comes from two CSV files found in the `/data/input-data` directory. The `variable_descriptions.csv` file lists the variable names, descriptions, and data types for each column in the output CSV. 
+The information that populates the`Data Summary` section of the documentation comes from two CSV files found in the `/data/input` directory. The `variable_descriptions.csv` file lists the variable names, descriptions, and data types for each column in the output CSV. 
