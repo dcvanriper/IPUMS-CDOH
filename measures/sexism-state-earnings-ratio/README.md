@@ -4,7 +4,6 @@ Data for this measure come from the Bureau of Labor Statistic's annual [Highligh
 
 The input data for the earnings ratio measure are the same as those for the labor force ratio measure. If you have already downloaded the data for the labor force ratio, you can copy the Excel spreadsheets into the `/data/input` directory. 
 
-
 ## Data processing
 After you have acquired the data and placed them in the `/data/input/` directory, you should run the script in the `/R` directory with `_proc.R` in its file name. This script will load the data into R and create the state-level measure related to the earnings ratios between men and women. It will then write out a CSV file to the `/data/output` directory. 
 
