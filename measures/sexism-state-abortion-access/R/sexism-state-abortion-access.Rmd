@@ -33,7 +33,7 @@ Rapp, Kristen Schorpp, Vanessa V. Volpe, and Hannah Neukrug. "State-level sexism
 
 ## Input Data
 ### Abortion provider data
-Myers, Caitlin K. 2021. “County-by-Month Distances to Nearest Abortion Provider.” OSF. July 16. doi:10.17605/OSF.IO/PFXQ3.
+Myers, Caitlin K. 2023. “County-by-Month Distances to Nearest Abortion Provider.” OSF. November 2. DOI 10.17605/OSF.IO/PFXQ3
 
 Rapp et al. cite the Guttmacher Institute as the source for their abortion access measure. The Guttmacher measure is only available for the years 2015 and 2017. Myers' dataset includes abortion access measures by month for every year from 2009-2022. Myers' dataset is updated monthly, and when a new dataset is released, the prior version is moved to an archive folder in the Myers Abortion Facility Database. Our measure uses the "2023.09.01_abortionaccess_countyxmonth.csv" file available from https://osf.io/pfxq3/. The"2023.09.01_abortionaccess_countyxmonth.csv" contains monthly access measures from 2009 through October 2023. 
 
