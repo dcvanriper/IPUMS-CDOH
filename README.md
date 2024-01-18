@@ -10,6 +10,7 @@ The CDOH code relies on a number of R packages. We recommend users install the f
 * `here`- we use the [here](https://here.r-lib.org/) package to generate path names 
 * `glue` - we use the [glue](https://glue.tidyverse.org/) package to generate file names using variable names
 * `ipumsr`- we use the [ipumsr](https://tech.popdata.org/ipumsr/) package to programatically access [IPUMS](https://www.ipums.org/) metadata and generate, submit, and download IPUMS extracts
+* `srvyr` - we use the [srvyr](https://github.com/gergness/srvyr/) package to process survey data from [IPUMS CPS](https://cps.ipums.org/cps/)
 * `readxl` - we use the [readxl](https://readxl.tidyverse.org/) package to read data from Excel spreadsheets
 * `osfr` - we use the [osfr](https://docs.ropensci.org/osfr/) package to access projects on the Open Science Framework ([OSF](https://osf.io/)) 
 
