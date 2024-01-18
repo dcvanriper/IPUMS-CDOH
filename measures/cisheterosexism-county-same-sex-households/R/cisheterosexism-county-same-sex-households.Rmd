@@ -36,6 +36,8 @@ Our proportions include:
 * Proportion of same-sex marriages among all same sex unions 
 * Proportion of same-sex unions among all households
 
+The  observation unit for these proportions is the household, which consists of all individuals residing in a housing unit. A household may consist of all unrelated individuals, couples who are married, or couples who are in cohabiting relationships (unmarried partnerships). Thus, when we use the words "marriage",  "union", "couple", or "unmarried partner household", we are referring to couples who reside in the same household. Our measures do not include couples, either married or unmarried, who live in separate households.
+
 ## Source of Measure
 Marino, F. A., Westrick-Payne, K. K., Manning, W. D., & Brown, S. L. (2024). Visualizing Concentrations of Couples and Same-Sex Couples across U.S. Counties. Socius, 10. https://doi.org/10.1177/23780231231222772.
 
