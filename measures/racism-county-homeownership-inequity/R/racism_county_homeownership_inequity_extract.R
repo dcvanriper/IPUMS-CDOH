@@ -30,6 +30,10 @@ if(!dir.exists(here("measures", topic, "data"))){
   dir.create(here("measures", topic, "data", "output"))
 }
 
+## ---- Create output data directory if it doesn't exist ---- 
+if(!dir.exists(here::here("measures", topic, "data", "output"))){
+  dir.create(here::here("measures", topic, "data", "output"))
+}
 
 ## ---- Create NHGIS extract request ---- 
 # 1. Create a vector of ACS 5-year "a" dataset

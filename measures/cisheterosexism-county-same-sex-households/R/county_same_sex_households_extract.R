@@ -33,6 +33,11 @@ if(!dir.exists(here::here("measures", topic, "data"))){
   dir.create(here::here("measures", topic, "data", "output"))
 }
 
+## ---- Create output data directory if it doesn't exist ---- 
+if(!dir.exists(here::here("measures", topic, "data", "output"))){
+  dir.create(here::here("measures", topic, "data", "output"))
+}
+
 ## ---- Create NHGIS extract request ---- 
 # 1. Create a dataset spec for the extract request
 datasets <- ds_spec(
