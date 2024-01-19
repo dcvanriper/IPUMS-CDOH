@@ -61,3 +61,16 @@ state_sex_poverty_wide <- state_sex_poverty_wide |>
 state_sex_poverty_wide |> 
   select(year = YEAR, statefips, state, ratio_weighted_poverty) |> 
   write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+
+## ---- Write out data frames to CSV ----------
+if(!dir.exists(here::here("measures", topic, "data", "output"))){
+  dir.create(here::here("measures", topic, "data", "output"))
+  
+  state_sex_poverty_wide |> 
+    select(year = YEAR, statefips, state, ratio_weighted_poverty) |> 
+    write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+} else{
+  state_sex_poverty_wide |> 
+    select(year = YEAR, statefips, state, ratio_weighted_poverty) |> 
+    write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+}

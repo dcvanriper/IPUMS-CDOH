@@ -19,10 +19,10 @@ require(glue)
 topic <- "sexism-state-domestic-violence-gun-ownership"
 
 ## ---- Import state fips code ----
-state_fips = read_csv(here("measures", "reference_datasets", "state_fips.csv"))
+state_fips = read_csv(here::here("measures", "reference_datasets", "state_fips.csv"))
 
 ## ---- Load the data ----
-df <- read_xlsx(here("measures", topic, "data", "input", "DATABASE_0.xlsx"))
+df <- read_xlsx(here::here("measures", topic, "data", "input", "DATABASE_0.xlsx"))
 
 ## ---- Retain variables of interest ----
 df <- df |> 
@@ -44,5 +44,12 @@ df <- df |>
   select(year, statefips, state, indicator_dv)
 
 ## ---- Write out data frames to CSV ----------
-df |> 
-  write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+if(!dir.exists(here::here("measures", topic, "data", "output"))){
+  dir.create(here::here("measures", topic, "data", "output"))
+  
+  df |> 
+    write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+} else{
+  df |> 
+    write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+}

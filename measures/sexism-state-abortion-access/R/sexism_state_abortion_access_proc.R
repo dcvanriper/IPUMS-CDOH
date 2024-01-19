@@ -15,7 +15,7 @@ here::i_am("measures/sexism-state-abortion-access/R/sexism_state_abortion_access
 library(tidyverse)
 
 ## ---- Import state fips code ----
-state_fips = read_csv(here("measures", "reference_datasets", "state_fips.csv")) 
+state_fips = read_csv(here::here("measures", "reference_datasets", "state_fips.csv")) 
 
 ## ---- Get path to abortion access data ----
 file_name <- list.files(path = here::here("measures", topic, "data", "input"), pattern = "abortion")
@@ -179,5 +179,12 @@ df_final_expanded <- df_final |>
   select(year, month, statefips, state, prop_abortion, -postal)
 
 ## ---- Write out data frames to CSV ----------
-df_final_expanded |> 
-  write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+if(!dir.exists(here::here("measures", topic, "data", "output"))){
+  dir.create(here::here("measures", topic, "data", "output"))
+  
+  df_final_expanded |> 
+    write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+} else{
+  df_final_expanded |> 
+    write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+}

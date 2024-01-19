@@ -22,16 +22,16 @@ topic <- "sexism-state-earnings-ratio"
 ## ---- Load data and compute ratios ----
 
 # Import state fips code
-state_fips = read_csv(here("measures", "reference_datasets", "state_fips.csv"))
+state_fips = read_csv(here::here("measures", "reference_datasets", "state_fips.csv"))
 
 # Generate a list of the spreadsheets in the input directory
-file_list <- list.files(path = here("measures", topic, "data", "input"), pattern = "xls")
+file_list <- list.files(path = here::here("measures", topic, "data", "input"), pattern = "xls")
 
 file_name <- file_list[1]
 
 # Function to read in each data file, compute ratio and return output
 read_compute_ratios <- function(file_name){
-  x <- read_xlsx(here("measures", topic, "data", "input", file_name), 
+  x <- read_xlsx(here::here("measures", topic, "data", "input", file_name), 
                  sheet = "Table 3", 
                  col_names = c("state", "num_workers", "median_earnings", "se_median_earnings","female_workers", "female_median_earnings", "se_female_median_earnings",
                                "male_workers", "male_median_earnings", "se_male_median_earnings", "women_earnings_perc_males"), 
@@ -57,8 +57,15 @@ df <- df |>
   arrange(year, statefips)
 
 ## ---- Write out data frames to CSV ----------
-df |> 
-  write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+if(!dir.exists(here::here("measures", topic, "data", "output"))){
+  dir.create(here::here("measures", topic, "data", "output"))
+  
+  df |> 
+    write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+} else{
+  df |> 
+    write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+}
 
 
 

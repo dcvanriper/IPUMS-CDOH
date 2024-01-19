@@ -19,14 +19,14 @@ require(janitor)
 topic <- "sexism-state-proportion-state-legislators-identifying-as-female"
 
 ## ---- Import state fips code ----
-state_fips = read_csv(here("measures", "reference_datasets", "state_fips.csv"))
+state_fips = read_csv(here::here("measures", "reference_datasets", "state_fips.csv"))
 
 # Set path to input data
 data_dir <- glue::glue("/pkg/popgis/labpcs/data_projects/nchat/measures/{table_label}/input-data/")
 
 ## ---- Load data ----
 # Generate a list of the spreadsheets in the input directory
-file_list <- list.files(path = here("measures", topic, "data", "input"), pattern = "Data")
+file_list <- list.files(path = here::here("measures", topic, "data", "input"), pattern = "Data")
 
 # Load CSVs using map_dfr
 #df <- map_dfr(file_list, ~ read_csv(here("measures", topic, "data", "input", .), col_types = "ccccccccc"))
@@ -35,7 +35,7 @@ file_list <- list.files(path = here("measures", topic, "data", "input"), pattern
 
 # Function to read in each data file, compute ratio and return output
 read_data <- function(file_name){
-  x <- read_csv(here("measures", topic, "data", "input", file_name), col_types = "ccccccccc") |> 
+  x <- read_csv(here::here("measures", topic, "data", "input", file_name), col_types = "ccccccccc") |> 
     clean_names() |> 
     mutate(year = as.numeric(str_extract(file_name, pattern = "(\\d)+")))
   
@@ -161,8 +161,14 @@ df_final <- df_final |>
          prop_female_house = total_house_women / total_house,
          prop_female_senate = total_senate_women / total_senate)
 
-## ---- Write out data frame to CSV
-df_final |> 
-  write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
-
+## ---- Write out data frames to CSV ----------
+if(!dir.exists(here::here("measures", topic, "data", "output"))){
+  dir.create(here::here("measures", topic, "data", "output"))
+  
+  df |> 
+    write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+} else{
+  df |> 
+    write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+}
 
