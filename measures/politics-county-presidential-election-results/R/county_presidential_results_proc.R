@@ -18,10 +18,10 @@ require(glue)
 topic <- "politics-county-presidential-election-results"
 
 ## ---- Import state fips code ----
-state_fips = read_csv(here("measures", "reference_datasets", "state_fips.csv"))
+state_fips = read_csv(here::here("measures", "reference_datasets", "state_fips.csv"))
 
 ## ---- Load the data ----
-df <- read_csv(here("measures", topic, "data", "input", "countypres_2000-2020.csv"))
+df <- read_csv(here::here("measures", topic, "data", "input", "countypres_2000-2020.csv"))
 
 ## ---- Clean up the data frame ----
 df <- df |> 
@@ -54,5 +54,14 @@ df_wide <- df_wide |>
   select(year, statefips, state, countyfips, county, prop_dem_cty, prop_gop_cty, -county_fips)
 
 ## ---- Write out data frames to CSV ----------
-df_wide |> 
-  write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+## If the output directory doesn't exist, create it and then write out to CSV. 
+## Otherwise, just write out ot CSV
+if(!dir.exists(here::here("measures", topic, "data", "output"))){
+  dir.create(here::here("measures", topic, "data", "output"))
+  
+  df_wide |> 
+    write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+} else {
+  df_wide |> 
+    write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
+}
