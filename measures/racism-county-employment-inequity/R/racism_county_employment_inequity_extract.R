@@ -24,10 +24,10 @@ tables = c("C23002H", "C23002B", "C23002I", "C23002D")
 geolvl <- c("county")
 
 ## ---- Create data directories if they don't already exist ----
-if(!dir.exists(here("measures", topic, "data"))){
-  dir.create(here("measures", topic, "data"))
-  dir.create(here("measures", topic, "data", "input"))
-  dir.create(here("measures", topic, "data", "output"))
+if(!dir.exists(here::here("measures", topic, "data"))){
+  dir.create(here::here("measures", topic, "data"))
+  dir.create(here::here("measures", topic, "data", "input"))
+  dir.create(here::here("measures", topic, "data", "output"))
 }
 
 ## ---- Create output data directory if it doesn't exist ---- 
