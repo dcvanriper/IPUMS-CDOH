@@ -46,7 +46,7 @@ datasets <- ds_spec(
   geog_levels = geolvl
 )
 
-# 2. Create an extract request that includes all 5-year datasets
+# 2. Create an extract request that for PCT15 from the 2020 decennial census
 extract <- define_extract_nhgis(
   description = "Coupled households by type from 2020 decennial census",
   datasets = datasets
