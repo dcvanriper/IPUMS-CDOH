@@ -60,7 +60,7 @@ df <- bind_rows(df_list_recode)
 ## ---- Compute the income inequality measures for each county-year combination ----
 # 1. Select the required fields
 df <- df |> 
-  select(GISJOIN, YEAR, STATEA, COUNTYA, COUNTY, white_alone_total:hispanic_or_latino_200000_or_more)
+  select(GISJOIN, YEAR, STATEA, STATE, COUNTYA, COUNTY, white_alone_total:hispanic_or_latino_200000_or_more)
 
 # 2. Compute ICE values for each county - year combination for the three Race/Ethnicity groups of interest - 
 # Black alone : White Alone Not Hispanic

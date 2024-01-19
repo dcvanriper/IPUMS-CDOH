@@ -16,7 +16,7 @@ library(ipumsr)
 library(srvyr)
 
 ## ---- Import state fips code ----
-state_fips = read_csv(here("measures", "reference_datasets", "state_fips.csv"))
+state_fips = read_csv(here::here("measures", "reference_datasets", "state_fips.csv"))
 
 ## ---- Create a numeric version of statefip in the state_fips df to facilitate joining to CPS data ----
 state_fips <- state_fips |> 

@@ -11,8 +11,6 @@ here::i_am("measures/sexism-state-proportion-state-legislators-identifying-as-fe
 
 ## ---- load require libraries ----
 require(tidyverse)
-#require(purrr)
-#require(vroom)
 require(janitor)
 
 ## ---- Set topic for the dataset ----
@@ -21,17 +19,9 @@ topic <- "sexism-state-proportion-state-legislators-identifying-as-female"
 ## ---- Import state fips code ----
 state_fips = read_csv(here::here("measures", "reference_datasets", "state_fips.csv"))
 
-# Set path to input data
-data_dir <- glue::glue("/pkg/popgis/labpcs/data_projects/nchat/measures/{table_label}/input-data/")
-
 ## ---- Load data ----
 # Generate a list of the spreadsheets in the input directory
 file_list <- list.files(path = here::here("measures", topic, "data", "input"), pattern = "Data")
-
-# Load CSVs using map_dfr
-#df <- map_dfr(file_list, ~ read_csv(here("measures", topic, "data", "input", .), col_types = "ccccccccc"))
-
-#df_list <- map(file_list, ~ read_csv(here("measures", topic, "data", "input", .), col_types = "ccccccccc"))
 
 # Function to read in each data file, compute ratio and return output
 read_data <- function(file_name){
@@ -68,10 +58,6 @@ t$state_rank<- str_remove_all(t$state_rank, "[<i/>]")
 t$senate <- str_remove_all(t$senate, "[<i/>]")
 t$house<- str_remove_all(t$house, "[<i/>]")
 t$percent_women_overall <- str_remove_all(t$percent_women_overall, "[<i/>]")
-# Don't remove the "/" from the following varialbes since it funtamentally changes the values
-#t$total_women_total_senate <- str_remove_all(t$total_women_total_senate, "[<i/>]")
-#t$total_women_total_house <- str_remove_all(t$total_women_total_house, "[<i/>]")
-#t$total_women_legislators <- str_remove_all(t$total_women_legislators, "[<i/>]")
 
 # Clean state of extraneous asterisks  =
 t$state <- str_remove_all(t$state, "[*]")
@@ -165,10 +151,10 @@ df_final <- df_final |>
 if(!dir.exists(here::here("measures", topic, "data", "output"))){
   dir.create(here::here("measures", topic, "data", "output"))
   
-  df |> 
+  df_final |> 
     write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
 } else{
-  df |> 
+  df_final |> 
     write_csv(here::here("measures", topic, "data", "output", glue::glue("{topic}.csv")), na='')
 }
 

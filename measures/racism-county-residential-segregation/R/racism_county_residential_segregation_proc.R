@@ -10,7 +10,7 @@
 source(here::here("measures", "fun", "nhgis_funs.R"))
 
 ## ---- Establish location of current script ----
-here::i_am("measures/racism-county-residential-segregation/R/racism-county-residential_segregation_proc.R")
+here::i_am("measures/racism-county-residential-segregation/R/racism_county_residential_segregation_proc.R")
 
 ## ---- Load libraries ---- 
 library(tidyverse)

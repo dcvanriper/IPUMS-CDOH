@@ -18,7 +18,7 @@ library(here)
 topic <- "sexism-state-paid-family-medical-leave"
 
 ## ---- Load the input data ----"
-df <- read_csv(here("measures", topic, "data", "input", "state-fml-effective-year.csv"))
+df <- read_csv(here::here("measures", topic, "data", "input", "state-fml-effective-year.csv"))
 
 ## ---- Identify the earliest and latest years in the state-fml-effective-year dataset ----
 first_year <- min(df$effective_fml, na.rm = TRUE)
