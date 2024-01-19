@@ -30,5 +30,4 @@ After we have acquired the input data for a particular measure, we can then proc
 We then create a PDF file documenting a particular measure, including descriptions of the input data, formulas used to create variables, and the name and description of each variable in the output CSV file. The file with the `.Rmd` extension in the measure's `/R` directory generates the PDF, and we use the `Knit` function in RStudio for that purpose. The PDF file will be written to the `/R` directory.
 
 ## Something about funding support...
-Funding for IPUMS CDOH is provided by XXXXX. Funding for the creation of this repository is provided by a pilot grants from YYYY.
-
+Funding for IPUMS CDOH is provided by grant U01HD108779 from the National Institutes of Health. Funding for the creation of this repository is provided by a pilot grants from the [Social, Behavioral, & Economic COVID Coordinator Center (SBE CCC)](https://www.icpsr.umich.edu/web/pages/sbeccc/). The SBE CCC is funded by grant U24AG076462 from the National Institutes of Health.
