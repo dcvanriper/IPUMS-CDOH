@@ -2,12 +2,12 @@
 ## Data acquisition
 Data for this measure come from the [Center for American Women and Politics (CAWP)](https://cawp.rutgers.edu/), Eagleton Institute of Politics, Rutgers University-New Brunswick. CAWP publishes annual reports and datasets about women serving in state legislatures, broken down by political party and legislative chamber (state senate and house). The reports and datasets are available from 2015-2023. 
 
-To access a specific year's dataset, you need to visit that year's URL (listed in the `URLs to CAWP's data` below). On the website, you need to click on the `Export Table Data` that is just above a header called `Women in State Legislatures YYYY` where `YYYY` is the year for which you are acquiring data. 
+To access a specific year's dataset, you need to visit that year's URL (listed in the `URLs to CAWP's data` below). To download data for a specific year, you need to click on the `Export Table Data` link that is just above a header called `Women in State Legislatures YYYY` where `YYYY` is the year for which you are acquiring data. 
 
-Clicking on the `Export Table Data` link will download a CSV to your computer, probably in your Downloads folder. You must move the CSV file to the `/data/input` direcory. The `_proc.R` script expects the Excel files to be in that directory.  We also strongly recommend you rename the CSV file because the downloaded file name is not particularly meaningful. We renamed the downloaded file to `Data_YYYY.csv` where YYYY` is the year the data represents.
+Clicking on the `Export Table Data` link will download a CSV to your computer, probably in your Downloads folder. You must move the CSV file to the `/data/input` directory. The `_proc.R` script expects the CSV files to be in that directory.  You also need to rename the CSV file because the name on the downloaded file is not meaningful. We strongly recommend renaming the CSV file to `Data_YYYY.csv` where `YYYY` is the year the data represents. The `_proc.R` script expects the CSV file name to include the word `Data`.
 
 ## Data processing
-After you have acquired the data and placed them in the `/data/input/` directory, you should run the script in the `/R` directory with `_proc.R` in its file name. This script will load the data into R and create the state-level measures related to the proportion of state legislators identifying as female. It will then write out a CSV file to the `/data/output` directory. 
+After you have acquired the data, placed them in the `/data/input/` directory, and renamed the files, you should run the script in the `/R` directory with `_proc.R` in its file name. This script will load the data into R and create the state-level measures related to the proportion of state legislators identifying as female. It will then write out a CSV file to the `/data/output` directory. 
 
 ## Documentation
 To generate the PDF documentation for the measure, you should knit the script in the `/R` directory with the `.Rmd` file extension. Knit will convert the R markdown file to a PDF in the `/R` directory. 

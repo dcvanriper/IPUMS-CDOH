@@ -21,13 +21,18 @@ CDOH measures draw on a variety of different data sources, and those sources are
 
 ## Processing pipeline
 ### 1. Data acquisition
-We begin by acquiring the input data that underlie a particular measure. Data acquisition is done programatically using functions in specific R packages (.e.g, `ipumsr` or `osfr`), or by downloading data files from specific websites. We provide instructions for data acquisition within each measure's folder in the `/measures` directory. 
+We begin by acquiring the input data that underlie a particular measure. Data acquisition is done programmatically using functions in specific R packages (e.g., `ipumsr` or `osfr`), or by downloading data files from specific websites. We provide instructions for data acquisition within each measure's folder in the `/measures` directory. 
 
 ### 2. Data processing
-After we have acquired the input data for a particular measure, we can then process it to create the CDOH measure. Withing the `/R` directory for each measure. there will be a script with `_proc.R` at end of its name. This script loads in the required input data, generates the variables for the measure, and writes out a CSV file into the `/data/output_data` directory. 
+After we have acquired the input data for a particular measure, we can then process it to create the CDOH measure. Within the `/R` directory for each measure, there will be a script with `_proc.R` at end of its name. This script loads in the required input data, generates the variables for the measure, and writes out a CSV file into the `/data/output_data` directory. 
 
 ### 3. Documentation generation
 We then create a PDF file documenting a particular measure, including descriptions of the input data, formulas used to create variables, and the name and description of each variable in the output CSV file. The file with the `.Rmd` extension in the measure's `/R` directory generates the PDF, and we use the `Knit` function in RStudio for that purpose. The PDF file will be written to the `/R` directory.
 
-## Something about funding support...
+## Citation 
+Publications and research reports should include a citation for each measure you use. You can find measure-specific citations in the `.Rmd` files in the `/measures` directories. The citation for the overall IPUMS Contextual Determinants of Health is:
+
+`Claire Kamp Dush, Wendy Manning, and David Van Riper. IPUMS Contextual Determinants of Health: Version 1.0 [dataset]. Minneapolis, MN: IPUMS. 2023. https://doi.org/10.18128/D130.V1.0`
+ 
+## Funding support
 Funding for IPUMS CDOH is provided by grant U01HD108779 from the National Institutes of Health. Funding for the creation of this repository is provided by a pilot grants from the [Social, Behavioral, & Economic COVID Coordinator Center (SBE CCC)](https://www.icpsr.umich.edu/web/pages/sbeccc/). The SBE CCC is funded by grant U24AG076462 from the National Institutes of Health.
