@@ -51,7 +51,7 @@ Data are available for each US state plus the District of Columbia.
 ## Temporal Detail
 
 ### Temporal Extent
-Data are available in machine-readable format from 2015-2021. Data from 1998-2014 are only available in PDF. We compute the state-level earnings ratios for 2015-2021 using the machine-readable data.   
+Data are available in machine-readable format from 2015-2022. Data from 1998-2014 are only available in PDF. We compute the state-level earnings ratios for 2015-2022 using the machine-readable data.   
 
 ### Temporal Frequency
 Data are available on a yearly basis. 

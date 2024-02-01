@@ -123,3 +123,13 @@ recode_nhgis_columns <- function(nhgis_df, recode_key){
   nhgis_df <- nhgis_df |> 
     rename_with(~recode(colnames(nhgis_df), !!!recode_key))
 }
+
+# This function zips the CSV and PDF files for each measure in the measure's /data/output folder.
+zip_cdoh_measures <- function(topic){
+  data <- here::here("measures", topic, "data", "output", glue::glue({topic}, ".csv"))
+  doc <- here::here("measures", topic, "R", glue::glue({topic}, ".pdf"))
+  zip_file_name <- here::here("measures", topic, "data", "output", glue::glue({topic}, ".zip"))
+  
+  zip::zip(zip_file_name, c(data, doc), mode = "cherry-pick")
+  
+}
