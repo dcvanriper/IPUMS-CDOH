@@ -1,0 +1,127 @@
+---
+title: "Sexism - state - labor force ratio"
+author: "David Van Riper"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tinytex)
+require(gt)
+require(readr)
+
+topic <- "sexism-state-labor-force-ratio"
+```
+
+## Contents
+* Description
+* Source of Measure
+* Input Data
+* Geographic Detail
+* Temporal Detail
+* Formula
+* Interpretation
+* Data Summary
+* Citation and Use
+
+## Description
+The state-level labor force ratio compares the proportion of men in the labor force to the proportion of women in the labor force in a given state in a given year. 
+
+## Source of Measure
+Rapp, Kristen Schorpp, Vanessa V. Volpe, and Hannah Neukrug. "State-level sexism and women’s health care access in the United States: Differences by race/ethnicity, 2014–2019." _American Journal of Public Health_ 111, no. 10 (2021): 1796-1805.
+
+## Input Data
+US Bureau of Labor Statistics. Table 3: Median usual weekly earnings of full-time wage and salary workers, by state, YYYY* annual averages. In: _Highlights of Women’s Earnings in YYYY_. Washington, D.C.: US Census Bureau.
+
+* The YYYY in the citation indicate the year the report covers. 
+
+The Bureau of Labor Statistics publishes an annual report called "Highlights of Women's Earnings" along with Microsoft Excel spreadsheets with data used in the report. These spreadsheets are available under the "Annual report: Highlights of Women's Earnings" section of this website:
+
+https://www.bls.gov/cps/earnings.htm#demographics
+
+## Geographic Detail
+
+### Geographic Extent
+Data are available for the United States.
+
+### Geographic Units
+Data are available for each US state plus the District of Columbia.
+
+## Temporal Detail
+
+### Temporal Extent
+Data are available in machine-readable format from 2015-2022. Data from 1998-2014 are only available in PDF. We compute the state-level labor force ratios for 2015-2022 using the machine-readable data.   
+
+### Temporal Frequency
+Data are available on a yearly basis. 
+
+## Formula 
+We compute the labor force ratio using the following formula:
+
+$$
+lf_{ratio_ij} = \frac{lf_{male_ij}}{lf_{female_ij}} 
+$$
+
+where $lf_{ratio_ij}$ is the labor force ratio in state $i$ in year $j$, $lf_{male_ij}$ is the proportion of the labor force identifying as male in state $i$ in year $j$, and $lf_{female_ij}$ is the proportion of the labor force identifying as female in state $i$ in year $j$. 
+
+## Interpretation
+This measure compares the proportion of males in the labor force to the proportion of females in the labor force. If the proportion of males in the labor force is higher than the proportion of females, the labor force ratio will be greater than 1.0. If the proportion of males in the labor force is lower than the proportion of females in the labor force, the labor force ratio will be less than 1.0. 
+
+## Data Summary
+```{r, echo=FALSE, message=FALSE}
+# Load the variable name, description and data type information
+variable_details <- read_csv(here::here("measures", topic, "data", "input", "variable_descriptions.csv"))
+
+# Create a gt() table from variable_details
+variable_details |> 
+  gt() |> 
+  cols_label(variable_name = "Variable name",
+             variable_description = "Variable description",
+             data_type = "Data type") |> 
+  cols_width(
+    variable_description ~ px(300)
+  )
+```
+
+## Citation and Use
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* REDISTRIBUTION: You will not redistribute the data without permission.
+
+  You may publish a subset of the data to meet journal requirements for accessing 
+  data related to a particular publication. Contact us for permission for any other 
+  redistribution; we will consider requests for free and commercial redistribution.
+
+* CITATION: You will cite CDOH appropriately.
+
+Publications and research reports employing this measure should include the following citation:
+
+* Claire Kamp Dush, Wendy Manning, and David Van Riper. Sexism - state - labor force ratio. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2024. https://doi.org/10.18128/M130-002.2024-02
+
+For policy briefs, online resources, or articles in the popular press, we recommend that you cite the use of CDOH data as follows:
+
+* IPUMS CDOH, University of Minnesota, cdoh.ipums.org.
+
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+
+Send electronic material to: ipums@umn.edu
+
+Printed matter should be sent to:
+
+    IPUMS CDOH
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455
+
+ 
