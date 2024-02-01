@@ -87,7 +87,7 @@ accompanying data, subject to the following conditions:
 
 Publications and research reports employing this measure should include the following citation:
 
-* Claire Kamp Dush, Wendy Manning, and David Van Riper. Politics - county - presidential election results. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2023. https://doi.org/10.18128/M130-014.2023-04
+* Claire Kamp Dush, Wendy Manning, and David Van Riper. Politics - county - presidential election results. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2024. https://doi.org/10.18128/M130-014.2024-02
 
 For policy briefs, online resources, or articles in the popular press, we recommend that you cite the use of CDOH data as follows:
 

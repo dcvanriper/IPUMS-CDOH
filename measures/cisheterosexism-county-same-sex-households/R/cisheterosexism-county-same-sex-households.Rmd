@@ -33,7 +33,7 @@ Our proportions include:
 
 * Proportion of same-sex unions among all unions 
 * Proportion of same-sex marriages among all marriages
-* Proportion of same-sex marriages among all same sex unions 
+* Proportion of same-sex marriages among all same-sex unions 
 * Proportion of same-sex unions among all households
 
 The  observation unit for these proportions is the household, which consists of all individuals residing in a housing unit. A household may consist of all unrelated individuals, couples who are married, or couples who are in cohabiting relationships (unmarried partnerships). Thus, when we use the words "marriage",  "union", "couple", or "unmarried partner household", we are referring to couples who reside in the same household. Our measures do not include couples, either married or unmarried, who live in separate households.
@@ -44,7 +44,7 @@ Marino, F. A., Westrick-Payne, K. K., Manning, W. D., & Brown, S. L. (2024). Vis
 ## Input Data
 Steven Manson, Jonathan Schroeder, David Van Riper, Katherine Knowles, Tracy Kugler, Finn Roberts, and Steven Ruggles. IPUMS National Historical Geographic Information System: Version 18.0 [dataset]. Minneapolis, MN: IPUMS. 2023. http://doi.org/10.18128/D050.V18.0
 
-We use data from the U.S. Census Bureau's 2020 Demographic and Housing Characteristics (DHC) summary file. 
+We use county-level data from the U.S. Census Bureau's 2020 Demographic and Housing Characteristics (DHC) summary file. 
 
 ## Data Tables
 The following IPUMS NHGIS table should be requested when creating the input dataset:
@@ -142,7 +142,7 @@ accompanying data, subject to the following conditions:
 
 Publications and research reports employing this measure should include the following citation:
 
-* Claire Kamp Dush, Wendy Manning, and David Van Riper. Cisheterosexism - county - same-sex households. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2023. https://doi.org/10.18128/M130-008.2023-04 
+* Claire Kamp Dush, Wendy Manning, and David Van Riper. Cisheterosexism - county - same-sex households. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2024. https://doi.org/10.18128/M130-016.2024-02 
 
 For policy briefs, online resources, or articles in the popular press, we recommend that you cite the use of CDOH data as follows:
 

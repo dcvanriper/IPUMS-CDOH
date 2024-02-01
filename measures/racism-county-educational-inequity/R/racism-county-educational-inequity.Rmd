@@ -137,7 +137,7 @@ accompanying data, subject to the following conditions:
 
 Publications and research reports employing this measure should include the following citation:
 
-* Rachel Hardeman, Claire Kamp Dush, Wendy Manning, and David Van Riper. Racism - county - educational inequity. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2023. https://doi.org/10.18128/M130-009.2023-04
+* Rachel Hardeman, Claire Kamp Dush, Wendy Manning, and David Van Riper. Racism - county - educational inequity. IPUMS Contextual Determinants of Health. Minneapolis, MN: IPUMS. 2024. https://doi.org/10.18128/M130-009.2024-02
 
 For policy briefs, online resources, or articles in the popular press, we recommend that you cite the use of CDOH data as follows:
 
