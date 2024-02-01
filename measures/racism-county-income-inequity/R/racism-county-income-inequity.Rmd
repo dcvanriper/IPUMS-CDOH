@@ -11,7 +11,7 @@ require(tinytex)
 require(gt)
 require(readr)
 
-topic <- "income-inequity"
+topic <- "racism-county-income-inequity"
 ```
 
 ## Contents
